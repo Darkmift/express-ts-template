@@ -4,8 +4,11 @@ import dotenv from 'dotenv';
 import { NODE_ENV, PORT, LOG_FORMAT } from '@config';
 import validateEnv from './utils/validateEnv';
 import { logger, stream } from '@utils/logger';
+import DB from './databases';
 
 validateEnv();
+
+DB.sequelize.sync({ force: false });
 
 dotenv.config();
 const app: Express = express();
